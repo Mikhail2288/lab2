@@ -39,12 +39,11 @@ public class main {
 
         //3.4
         out.println("3.4");
-        // Получение списка сотрудников отдела через ссылку на Петрова
-        List<Employee> itEmployees = Petrov.getDepartmentEmployees();
+        List<Employee> itEmployees = Petrov.getDepartmentEmployees();// Получение списка сотрудников отдела через ссылку на Петрова
 
         out.println("Список сотрудников отдела IT:");
         for (Employee employee : itEmployees) {
-            out.println(employee.name);
+            out.println(employee.getName());
         }
         //4.5
         out.println("4.5");
