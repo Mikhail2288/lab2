@@ -24,6 +24,7 @@ public class fraction { // сущность дробь
     }
 
     public fraction divide(fraction otherfraction) {//деление
+        if (otherfraction.numerator == 0) throw new ArithmeticException("Числитель не может быть равен 0 у дроби на которую делят в функции деления.");
         return new fraction(this.numerator * otherfraction.denominator, this.denominator * otherfraction.numerator);
     }
 
