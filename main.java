@@ -2,6 +2,7 @@ import static java.lang.System.out;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.InputMismatchException;
 public class main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -58,22 +59,47 @@ public class main {
 
         //5.5
         out.println("5.5");
-        fraction f1 = new fraction(1, 3);
-        fraction f2 = new fraction(2, 3);
-        fraction f3 = new fraction(5, 2);
-
-        // Выводим результаты операций с дробями:
-        out.println(f1 + " * " + f2 + " = " + f1.multiply(f2));
-        out.println(f1 + " + " + f2 + " = " + f1.sum(f2));
-        out.println(f1 + " - " + f2 + " = " + f1.minus(f2));
-        out.println(f1 + " / " + f2 + " = " + f1.divide(f2));
-        // Выводим результаты операций с целыми числами:
-        out.println(f1 + " + " + 5 + " = " + f1.sum(5));
-        out.println(f1 + " - " + 5 + " = " + f1.minus(5));
-        out.println(f1 + " * " + 5 + " = " + f1.multiply(5));
-        out.println(f1 + " / " + 5 + " = " + f1.divide(5));
-
-        fraction result = f1.sum(f2).divide(f3).minus(5);
-        out.println(f1 + " + " + f2 + " / " + f3 + " - " + 5 + " = " + result);
+        try{
+          out.print("Введите числитель первой дроби: ");
+          int numerator1 = in.nextInt();
+          out.print("Введите знаменатель первой дроби: ");
+          int denominator1 = in.nextInt();
+          if (denominator1 == 0) throw new IllegalArgumentException("Знаменатель не может быть равен 0! Неверный ввод.");
+          fraction f1 = new fraction(numerator1, denominator1);
+          out.print("Введите числитель второй дроби: ");
+          int numerator2 = in.nextInt();
+          out.print("Введите знаменатель второй дроби: ");
+          int denominator2 = in.nextInt();
+          if (denominator2 == 0) throw new IllegalArgumentException("Знаменатель не может быть равен 0! Неверный ввод.");
+          fraction f2 = new fraction(numerator2, denominator2);
+          out.print("Введите числитель третьтей дроби: ");
+          int numerator3 = in.nextInt();
+          out.print("Введите знаменатель третьтей дроби: ");
+          int denominator3 = in.nextInt();
+          if (denominator3 == 0) throw new IllegalArgumentException("Знаменатель не может быть равен 0! Неверный ввод.");
+          fraction f3 = new fraction(numerator3, denominator3);
+          fraction result = f1.sum(f2).divide(f3).minus(5);
+          // Выводим результаты операций с дробями:
+          out.println(f1 + " * " + f2 + " = " + f1.multiply(f2));
+          out.println(f1 + " + " + f2 + " = " + f1.sum(f2));
+          out.println(f1 + " - " + f2 + " = " + f1.minus(f2));
+          out.println(f1 + " / " + f2 + " = " + f1.divide(f2));
+          // Выводим результаты операций с целыми числами:
+          out.println(f1 + " + " + 5 + " = " + f1.sum(5));
+          out.println(f1 + " - " + 5 + " = " + f1.minus(5));
+          out.println(f1 + " * " + 5 + " = " + f1.multiply(5));
+          out.println(f1 + " / " + 5 + " = " + f1.divide(5));
+          // Выводим результат примера
+          out.println(f1 + " + " + f2 + " / " + f3 + " - " + 5 + " = " + result);
+        }
+        catch (InputMismatchException e) {//catch для проверки на ввод целых чисел
+            out.println("Ошибка ввода! Введите целое число.");
+        } 
+        catch (IllegalArgumentException e) { //catch для проверки на 0 в знаменателе
+            out.println("Знаменатель не может быть равен 0! Введите другое значение.");
+        }
+        catch (ArithmeticException e){ //catch для проверки на 0 в числителе второй дроби при делении
+            out.println("Числитель не может быть равен 0 в функции деления! Введите другое значение.");
+        }
     }
 }
