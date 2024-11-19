@@ -1,0 +1,34 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Department {//класс отдела
+    private String name;
+    private Employee head;
+    private List<Employee> employees;//список сотрудника
+
+    public Department(String name) {
+        this.name = name;
+        this.employees = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Employee getHead() {
+        return head;
+    }
+
+    public void setHead(Employee head) {
+        this.head = head;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+}
